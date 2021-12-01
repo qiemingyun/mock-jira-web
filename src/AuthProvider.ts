@@ -18,6 +18,8 @@ export const register = (param: { username: string; password: string }) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
+    mode: 'cors',
     body: JSON.stringify(param),
   }).then(async (response) => {
     if (response.ok) {
@@ -39,6 +41,8 @@ export const login = (param: { username: string; password: string }) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
+    mode: 'cors',
     body: JSON.stringify(param),
   }).then(async (response) => {
     if (response.ok) {
@@ -55,7 +59,10 @@ export const login = (param: { username: string; password: string }) => {
 };
 
 export const logout = () => {
-  return fetch(`${apiUrl}/api/user/logout`).then(async (response) => {
+  return fetch(`${apiUrl}/api/user/logout`, {
+    credentials: 'include',
+    mode: 'cors',
+  }).then(async (response) => {
     if (response.ok) {
       return handleUserResponse(await response.json());
     } else {

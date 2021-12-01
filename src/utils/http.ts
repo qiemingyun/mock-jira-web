@@ -19,6 +19,7 @@ export const http = async (
   const config = {
     method: 'GET',
     headers: {
+      'Access-Control-Allow-Origin': '*',
       'Content-Type': req ? 'application/json' : '',
     },
     ...customConfig,
@@ -31,7 +32,11 @@ export const http = async (
   }
 
   return window
-    .fetch(`${apiUrl}/${endpoint}`, config)
+    .fetch(`${apiUrl}/${endpoint}`, {
+      ...config,
+      credentials: 'include',
+      mode: 'cors',
+    })
     .then(async (response) => {
       if (response.ok) {
         const res: ResponseData = await response.json();
@@ -43,6 +48,9 @@ export const http = async (
       } else {
         return Promise.reject(req);
       }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
     });
 };
 
