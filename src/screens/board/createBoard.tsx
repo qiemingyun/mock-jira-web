@@ -10,8 +10,8 @@ export const CreateBoard = () => {
   const { mutateAsync: addBoard } = useAddBoard(useBoardQueryKey());
 
   const submit = async () => {
-    await addBoard({ name, projectId });
     setName('');
+    await addBoard({ name, projectId });
   };
 
   return (

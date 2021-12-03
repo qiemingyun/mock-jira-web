@@ -11,9 +11,9 @@ export const CreateTask = ({ boardId }: { boardId: number }) => {
   const [inputMode, setInputMode] = useState(false);
 
   const submit = async () => {
-    await addTask({ projectId, name, boardId });
     setInputMode(false);
     setName('');
+    await addTask({ projectId, name, boardId });
   };
 
   const toggle = () => setInputMode((mode) => !mode);

@@ -36,7 +36,11 @@ export const TaskModal = () => {
   };
 
   useEffect(() => {
-    form.setFieldsValue(editingTask);
+    if (editingTask) {
+      const taskData = editingTask;
+      taskData.name = decodeURI(editingTask.name);
+      form.setFieldsValue(taskData);
+    }
   }, [form, editingTask]);
 
   return (

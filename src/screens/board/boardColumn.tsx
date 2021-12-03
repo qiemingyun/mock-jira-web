@@ -37,7 +37,7 @@ const TaskCard = ({ task }: { task: Task }) => {
       key={task.id}
     >
       <p>
-        <Mark keyword={keyword} name={task.name} />
+        <Mark keyword={keyword} name={decodeURI(task.name)} />
       </p>
       <TaskTypeIcon id={task.typeId} />
     </Card>
@@ -51,7 +51,7 @@ export const BoardColumn = React.forwardRef<HTMLDivElement, { board: Board }>(
     return (
       <Container {...props} ref={ref}>
         <Row between={true}>
-          <h3>{board.name}</h3>
+          <h3>{decodeURI(board.name)}</h3>
           <More board={board} key={board.id} />
         </Row>
         <TaskContainer>
